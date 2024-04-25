@@ -1,7 +1,7 @@
 import { EditorStore } from "./store";
-import { EditorApp } from "./editor-app";
-import { EditorCode } from "./editor-code";
-import { EditorPreview } from "./editor-preview";
+import { EditorApp } from "./app";
+import { EditorCode } from "./components/code";
+import { EditorPreview } from "./components/preview";
 
 customElements.define("editor-store", EditorStore);
 customElements.define("editor-app", EditorApp);
