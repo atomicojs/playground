@@ -1,5 +1,5 @@
 import { css } from "atomico";
 
 export const tokens = css`
-  @tokens "./tokens.yaml" defaultValues;
+    @tokens "./tokens.yaml" defaultValues;
 `;
