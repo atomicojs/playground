@@ -1,0 +1,13 @@
+container:
+  background: linear-gradient(45deg, rgb(3, 0, 12), rgb(9 0 47))
+
+card:
+  radius: 12px
+
+code:
+  font:
+    size: 1rem
+  background: rgba(255, 255, 255, 0.05)
+  border:
+    size: 1px
+    color: rgba(255, 255, 255, 0.1)

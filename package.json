@@ -1,0 +1,56 @@
+{
+  "name": "@atomico/playground",
+  "description": "Atomico Code Lab",
+  "workspaces": [
+    "src/*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "UpperCod",
+    "email": "uppercod.git@gmail.com",
+    "url": "https://github.com/uppercod"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/atomicojs/components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/atomicojs/components/issues"
+  },
+  "homepage": "https://atomico.gitbook.io/doc/atomico/atomico-components",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite --force",
+    "build": "vite build",
+    "create:component": "scaff component-tsx src"
+  },
+  "dependencies": {
+    "@atomico/hooks": "^4.2.0",
+    "@atomico/postcss-tokens": "^3.5.0",
+    "@atomico/store": "^2.0.1",
+    "@codemirror/commands": "^6.5.0",
+    "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/theme-one-dark": "^6.1.2",
+    "@codemirror/view": "^6.26.3",
+    "@uppercod/replace-import": "^1.1.0",
+    "atomico": "^1.79.2",
+    "codemirror": "^6.0.1",
+    "sucrase": "^3.35.0"
+  },
+  "devDependencies": {
+    "@atomico/tsconfig": "^1.0.0",
+    "@atomico/vite": "^2.17.9",
+    "vite": "latest"
+  },
+  "postcss": {
+    "plugins": {
+      "@atomico/postcss-tokens": {
+        "prefix": "editor"
+      }
+    }
+  }
+}
