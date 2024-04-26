@@ -1,6 +1,8 @@
 import { c, css, usePromise, useRef, useState } from "atomico";
 import { EditorCode } from "./components/code";
 import { EditorPreview } from "./components/preview";
+import { EditorToolbar } from "./components/toolbar";
+import * as Icon from "./components/icons";
 import { EditorStore } from "./store";
 import { useDragResize } from "./use-drag-resize";
 import { tokens } from "./tokens";
@@ -53,17 +55,21 @@ export const EditorApp = c(
                     <EditorCode
                         {...state}
                         class="code"
-                        style={`--max-width: ${position.x}`}
+                        style={`--split-x: ${position.x};--split-y: ${position.y}`}
                         onChange={({ detail }) => {
                             stateToUrl({ code: detail });
                         }}
                     />
-                    <button class="drag" ref={refDragTrigger} staticNode>
-                        <svg viewBox="0 0 32 32">
-                            <rect x="12" y="0" width="2" height="100%" rx="1" />
-                            <rect x="18" y="0" width="2" height="100%" rx="1" />
-                        </svg>
-                    </button>
+                    <EditorToolbar class="toolbar">
+                        <button
+                            slot="content"
+                            class="drag"
+                            ref={refDragTrigger}
+                            staticNode
+                        >
+                            {Icon.Drag}
+                        </button>
+                    </EditorToolbar>
                     <EditorPreview class="preview" layer={active} />
                 </EditorStore>
             </host>
@@ -71,7 +77,11 @@ export const EditorApp = c(
     },
     {
         props: {
-            src: String
+            src: String,
+            vertical: {
+                type: Boolean,
+                reflect: true
+            }
         },
         styles: [
             tokens,
@@ -86,30 +96,41 @@ export const EditorApp = c(
                 }
                 .code {
                     width: 100%;
-                    max-width: calc(100% * var(--max-width));
+                    max-width: calc(100% * var(--split-x));
                 }
                 .preview {
                     flex: 0%;
+                    min-width: 280px;
                 }
-                .drag {
-                    all: unset;
-                    width: 2rem;
+                .toolbar {
+                    width: 2.75rem;
+                }
+                .toolbar button {
+                    width: 100%;
+                    min-height: 2rem;
+                    padding: none;
+                    background: transparent;
+                    border: none;
                     display: flex;
-                    align-items: center;
                     justify-content: center;
-                    cursor: col-resize;
+                    align-items: center;
+                    cursor: pointer;
                 }
-                .drag svg {
-                    width: 2rem;
-                    height: 2rem;
+                .toolbar button.drag {
+                    height: 100%;
+                    cursor: w-resize;
                 }
-                .drag rect {
-                    fill: rgba(255, 255, 255, 0.25);
+                .toolbar button svg {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                }
+                .toolbar button {
+                    --icon-fill: rgba(255, 255, 255, 0.5);
                     transition: 0.3s ease all;
                 }
-                .drag:hover rect,
-                .drag:active rect {
-                    fill: rgba(255, 255, 255, 1);
+                .toolbar button:hover,
+                .toolbar button:active {
+                    --icon-fill: rgba(255, 255, 255, 1);
                 }
             `
         ]

@@ -1,26 +1,21 @@
 import { c, useProp, css } from "atomico";
 
+// WebComponent
 export const MyComponent = c(() => {
   const [ count, setCount ] = useProp("count");
   return <host shadowDom>
-    <button onclick={()=>setCount(count-1)}>-</button>
-    <div>{count}</div>
-    <button onclick={()=>setCount(count+1)}>+</button>
+    <button onclick={()=>setCount(count+1)}>
+      Increment {count}
+    </button>
   </host>;
 },{
   props: {
     count: { type: Number, value: 0 },
   },
   styles: css`
-    :host{
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
     button{
-      width: 2rem;
       height: 2rem;
-      border-radius: 100%;
+      border-radius: 1rem;
       border: 2px solid black;
       background: transparent;
       font-weight: bold;
@@ -28,6 +23,7 @@ export const MyComponent = c(() => {
   `
 });
 
+// Render JSX content in body
 export default (
   <host center>
     <MyComponent />
