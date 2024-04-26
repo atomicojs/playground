@@ -21,8 +21,11 @@ export const EditorPreview = c(
                     code: result.code,
                     filter: () => true,
                     replace(token) {
+                        console.log(token);
                         token.toString = () =>
-                            `import ${token.scope} from "https://esm.sh/${token.src}"`;
+                            `import ${
+                                token.scope ? `${token.scope} from` : ""
+                            }"https://esm.sh/${token.src}"`;
                         return token;
                     }
                 });
